@@ -11,22 +11,27 @@ make sure to remove spaces, otherwise the shell will get upset.
 Image (--image) is optional, you can leave image blank and the golden image will be used.
 
 - Upgrade by IP address without specifying image
-python3 /upgrade.py 192.168.0.1,192.168.0.2,192.168.0.3
-
+```buildoutcfg
+python3 upgrade.py 192.168.0.1,192.168.0.2,192.168.0.3
+```
 - Upgrade by IP address specifying image (optional)
-python3 /upgrade.py --image cat9k_iosxe.16.09.05.SPA.bin 192.168.0.1 192.168.0.2 192.168.0.3
 
+```buildoutcfg
+python3 upgrade.py --image cat9k_iosxe.16.09.05.SPA.bin 192.168.0.1 192.168.0.2 192.168.0.3
+```
 Or, you can tag the list of switches to be upgraded, 
 and use the tag to identify which group of devices to be upgraded
 
 - Upgrade by tag
-python3 /upgrade.py --tag upgrade9k --image cat9k_iosxe.16.09.05.SPA.bin 
+```buildoutcfg
+python3 upgrade.py --tag upgrade9k --image cat9k_iosxe.16.09.05.SPA.bin 
+```
 
 ## list_images.py
 provides a list of all of the images on DNAC
 
 ```buildoutcfg
-$ ./list_images.py 
+python3 list_images.py 
 https://sandboxdnac.cisco.com:8080/api/v1/image/importation
 Name                                         Version        FileSize          Family         importSourceType
 cat3k_caa-universalk9.16.06.02s.SPA.bin      16.6.2s        409953451 bytes   CAT3K_CAA      FILESYSTEM
@@ -40,7 +45,7 @@ checking in the script, so you need to be careful (or extend the script)
 
 
 ```buildoutcfg
- ./distribute.py --tag upgrade9k --image cat9k_iosxe.16.06.02s.SPA.bin
+python3 /distribute.py --tag upgrade9k --image cat9k_iosxe.16.06.02s.SPA.bin
 https://sandboxdnac.cisco.com:8080/api/v1/tag/association?tag=upgrade9k&resourceType=network-device
 https://sandboxdnac.cisco.com:8080/api/v1/image/importation?name=cat9k_iosxe.16.06.02s.SPA.bin
 https://sandboxdnac.cisco.com:8080/api/v1/image/importation/dbd0f3d3-c24e-4e70-9391-0ab38b3cfc32
@@ -84,7 +89,7 @@ used to delete an image from a device.  This could be used to clean up flash spa
 it to clean up and allow another image to be pushed.
 
 ```buildoutcfg
-$ ./delete.py --tag upgrade9k --image cat9k_iosxe.16.06.02s.SPA.bin
+python3 delete.py --tag upgrade9k --image cat9k_iosxe.16.06.02s.SPA.bin
 https://sandboxdnac.cisco.com:8080/api/v1/tag/association?tag=upgrade9k&resourceType=network-device
 Waiting for Task 3a455f95-1a87-4ae7-b5a8-c8cd0949fdf8
 {'data': 'delete-image-device', 'isError': False, 'startTime': 1517126153695, 'rootId': '3a455f95-1a87-4ae7-b5a8-c8cd0949fdf8', 'id': '3a455f95-1a87-4ae7-b5a8-c8cd0949fdf8', 'progress': 'completed successfully.  Success = 1, Failure = 0, Running = 0, Pending = 0, Total = 1', 'version': 1517126153695, 'endTime': 1517126154725, 'serviceType': 'Swim Service'}
