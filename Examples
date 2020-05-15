@@ -1,0 +1,19 @@
+Assume new image is already distributed to the switches
+
+To command the script to upgrade the switches, provide a list of IPs sepperated by ','.  
+make sure to remove spaces, otherwise the shell will get upset. 
+
+Image (--image) is optional, you can leave image blank and the golden image will be used.
+
+- Upgrade by IP address without specifying image
+python3 /upgrade.py 192.168.0.1,192.168.0.2,192.168.0.3
+
+- Upgrade by IP address specifying image (optional)
+python3 /upgrade.py --image cat9k_iosxe.16.09.05.SPA.bin 192.168.0.1 192.168.0.2 192.168.0.3
+
+Or, you can tag the list of switches to be upgraded, 
+and use the tag to identify which group of devices to be upgraded
+
+- Upgrade by tag
+python3 /upgrade.py --tag upgrade9k --image cat9k_iosxe.16.09.05.SPA.bin 
+
